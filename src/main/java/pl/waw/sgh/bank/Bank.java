@@ -6,12 +6,12 @@ import java.util.List;
 
 public class Bank implements Serializable {
 
-    private List<Customer> customerList = new ArrayList<>();
+    public List<Customer> customerList = new ArrayList<>();
 
     private List<Account> accountList = new ArrayList<>();
 
     public Customer nextCustomer(Customer curCustomer) {
-        int curCustIdx = customerList.indexOf(curCustomer);
+        int curCustIdx = curCustomer.getId();
         if ((curCustIdx >= 0) && (curCustIdx < customerList.size()-1)) {
             return customerList.get(curCustIdx+1);
         } else {
@@ -20,7 +20,7 @@ public class Bank implements Serializable {
     }
 
     public Customer previousCustomer(Customer curCustomer) {
-        int curCustIdx = customerList.indexOf(curCustomer);
+        int curCustIdx = curCustomer.getId();
         if (curCustIdx > 0) {
             return customerList.get(curCustIdx-1);
         } else {
@@ -29,9 +29,8 @@ public class Bank implements Serializable {
     }
 
 
-
     public Customer newCustomer(String firstName, String lastName, String email) {
-        Customer c = new Customer(firstName, lastName, email);
+        Customer c = new Customer(firstName, lastName, email, customerList.size());
         customerList.add(c);
         return c;
     }
@@ -53,6 +52,30 @@ public class Bank implements Serializable {
 
     public Account newSavingsAccount(String currency, Customer customer) {
         return newAccount(false, currency, customer);
+    }
+
+    public boolean ifCustexists(Integer custId) {
+        System.out.println(customerList);
+        if (customerList.size() <= custId) {
+            return false;
+        }
+        return true;
+    }
+
+    public Customer findCustomerById(Integer custId) throws NoCustomerException {
+        for (Customer c : customerList) {
+            if (ifCustexists(custId)) {
+                return c;
+            }
+        } throw new NoCustomerException(custId);
+    }
+
+    public String changeCustomerName(String firstName, String lastName, String email, String custId) throws NoCustomerException {
+        Integer custid = Integer.valueOf(custId);
+        Customer c = findCustomerById(custid);
+        c = new Customer(firstName, lastName, email, custid);
+        customerList.set(custid, c);
+        return c.getFirstName();
     }
 
     public Account findAccountById(Integer accId) throws AccountNotFoundException {

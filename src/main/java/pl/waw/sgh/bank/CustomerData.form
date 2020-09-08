@@ -12,7 +12,7 @@
       <name value=""/>
       <opaque value="true"/>
     </properties>
-    <border type="none" title="Customer Data" title-position="3">    
+    <border type="none" title="Customer Data" title-position="3">
       <title-color color="-16740463"/>
     </border>
     <children>
@@ -29,7 +29,7 @@
         </constraints>
         <properties>
           <background color="-5197648"/>
-          <editable value="false"/>          
+          <editable value="false"/>
           <foreground color="-16740463"/>
           <horizontalAlignment value="0"/>
           <text value="First Name"/>
@@ -43,7 +43,7 @@
         </constraints>
         <properties>
           <background color="-5197648"/>
-          <editable value="false"/>        
+          <editable value="false"/>
           <foreground color="-16740463"/>
           <horizontalAlignment value="0"/>
           <text value="Last Name"/>
@@ -57,8 +57,9 @@
         </constraints>
         <properties>
           <background color="-5131855"/>
-          <editable value="false"/>         
+          <editable value="false"/>
           <foreground color="-16740463"/>
+          <horizontalAlignment value="0"/>
           <text value="E-mail Adress"/>
         </properties>
       </component>
@@ -69,7 +70,7 @@
           </grid>
         </constraints>
         <properties>
-          <background color="-16740463"/>        
+          <background color="-16740463"/>
           <foreground color="-5131855"/>
           <horizontalAlignment value="0"/>
           <text value="..."/>
@@ -82,7 +83,7 @@
           </grid>
         </constraints>
         <properties>
-          <background color="-16740463"/>        
+          <background color="-16740463"/>
           <foreground color="-5131855"/>
           <horizontalAlignment value="0"/>
           <text value="..."/>
@@ -95,7 +96,7 @@
           </grid>
         </constraints>
         <properties>
-          <background color="-16740463"/>         
+          <background color="-16740463"/>
           <foreground color="-5131855"/>
           <horizontalAlignment value="0"/>
           <text value="..."/>
@@ -117,7 +118,7 @@
             </constraints>
             <properties>
               <background color="-5131855"/>
-              <borderPainted value="false"/>       
+              <borderPainted value="false"/>
               <foreground color="-16740463"/>
               <hideActionText value="true"/>
               <horizontalTextPosition value="0"/>
@@ -134,7 +135,7 @@
             </constraints>
             <properties>
               <background color="-5131855"/>
-              <borderPainted value="false"/>         
+              <borderPainted value="false"/>
               <foreground color="-16740463"/>
               <hideActionText value="true"/>
               <horizontalTextPosition value="0"/>

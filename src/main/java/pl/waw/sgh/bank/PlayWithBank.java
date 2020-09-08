@@ -7,20 +7,20 @@ public class PlayWithBank {
         Customer c1 = myBank.newCustomer("Pawel", "Rubach", "pawel.rubach@sgh.waw.pl");
         Customer c2 = myBank.newCustomer("Anna", "Smith", "anna.smith@sgh.waw.pl");
 
-        try {
-            Account a1 = myBank.newDebitAccount("EUR", c1);
-            a1.deposit(150d);
-
-            Account a2 = myBank.newSavingsAccount("EUR", c2);
-            a1.charge(40d);
-            myBank.transfer(4, 1, 60d);
-        }
+//        try {
+//            Account a1 = myBank.newDebitAccount("EUR", c1);
+//            a1.deposit(150d);
+//
+//            Account a2 = myBank.newSavingsAccount("EUR", c2);
+//            a1.charge(40d);
+//            myBank.transfer(4, 1, 60d);
+//        }
         // Only as a wrapper to the whole application - to trace bugs
         /*catch (Exception be) {
             System.out.println(be.getMessage());
-        } */ catch (BankException be) {
-            System.out.println(be.getMessage());
-        }
+//       } */// catch (BankException be) {
+//            System.out.println(be.getMessage());
+//        }
 
         /*catch (AccountNotFoundException ae) {
             System.out.println(ae.getMessage());

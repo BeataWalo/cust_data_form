@@ -16,7 +16,11 @@ public class BankFrame {
         JFrame customerDataFrame = new JFrame("Bank - Customer form");
         CustomerDataLogic customerDataLogic = new CustomerDataLogic(customerDataFrame, bank);
 
-        customerDataFrame.add(customerDataLogic.getMainCustomerPanel());
+        try {
+            customerDataFrame.add(customerDataLogic.getMainCustomerPanel());
+        } catch (NoCustomerException e) {
+            e.printStackTrace();
+        }
         customerDataFrame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         customerDataFrame.pack();
         customerDataFrame.setVisible(true);

@@ -14,11 +14,11 @@ public class Customer implements Serializable {
 
     private String email;
 
-    public Customer(String firstName, String lastName, String email) {
+    public Customer(String firstName, String lastName, String email, Integer id) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
-        this.id = lastCustomerId++;
+        this.id = id;
     }
 
     public Integer getId() {

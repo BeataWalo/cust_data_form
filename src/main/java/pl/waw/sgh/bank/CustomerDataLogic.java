@@ -23,29 +23,56 @@ public class CustomerDataLogic extends CustomerData {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                Customer newCust = bank.newCustomer(firstNameTextField.getText(), lastNameTextField.getText(), emailTextField.getText());
-                currentCust = newCust;
-                JOptionPane.showMessageDialog(null, "Saving the customer: "
-                        + firstNameTextField.getText() + " bank: " + bank.toString());
-
+                if (customerIDtextField.getText().trim().isEmpty()) {
+                    Customer newCust = bank.newCustomer(firstNameTextField.getText(), lastNameTextField.getText(), emailTextField.getText());
+                    customerIDtextField.setText(newCust.getId().toString());
+                    currentCust = newCust;
+                    JOptionPane.showMessageDialog(null, "Saving the customer: "
+                            + firstNameTextField.getText() + " bank: " + bank.toString());
+                } else {
+                    try {
+                        bank.changeCustomerName(firstNameTextField.getText(), lastNameTextField.getText(),
+                                emailTextField.getText(),
+                                customerIDtextField.getText());
+                        JOptionPane.showMessageDialog(null, "Saving new data");
+                    } catch (NoCustomerException ex) {
+                        ex.printStackTrace();
+                    }
+                }
             }
         });
         nextButton.addActionListener(new ActionListener() {
 
             @Override
             public void actionPerformed(ActionEvent e) {
+                currentCust = new Customer(firstNameTextField.getText(), lastNameTextField.getText(),
+                        emailTextField.getText(), Integer.valueOf(customerIDtextField.getText()));
                 Customer nextCust = bank.nextCustomer(currentCust);
-                if (nextCust!=null)
+                if (nextCust!=null) {
                     showCustomer(nextCust);
+                }
             }
         });
         previousButton.addActionListener(new ActionListener() {
 
             @Override
             public void actionPerformed(ActionEvent e) {
+                currentCust = new Customer(firstNameTextField.getText(), lastNameTextField.getText(),
+                        emailTextField.getText(), Integer.valueOf(customerIDtextField.getText()));
                 Customer prevCust = bank.previousCustomer(currentCust);
                 if (prevCust!=null)
                     showCustomer(prevCust);
+            }
+        });
+
+        newButton.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                customerIDtextField.setText(" ");
+                firstNameTextField.setText(" ");
+                lastNameTextField.setText(" ");
+                emailTextField.setText(" ");
             }
         });
     }
@@ -59,7 +86,15 @@ public class CustomerDataLogic extends CustomerData {
     }
 
 
-    public JPanel getMainCustomerPanel() {
+    static boolean ifStartup = true;
+    public JPanel getMainCustomerPanel() throws NoCustomerException {
+        if (bank.ifCustexists(0) && ifStartup) {
+            customerIDtextField.setText("0");
+            firstNameTextField.setText(bank.findCustomerById(0).getFirstName());
+            lastNameTextField.setText(bank.findCustomerById(0).getLastName());
+            emailTextField.setText(bank.findCustomerById(0).getEmail());
+            ifStartup = false;
+        }
         return mainCustomerPanel;
     }
 }
